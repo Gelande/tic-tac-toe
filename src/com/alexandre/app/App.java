@@ -2,6 +2,10 @@ package com.alexandre.app;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        Game game = new Game();
+
+        Board board = new Board();
+        board.imprimir();
     }
 }
