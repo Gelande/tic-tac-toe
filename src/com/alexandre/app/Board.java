@@ -63,4 +63,64 @@ public class Board {
         }
         return true;
     }
+
+    public boolean makeMove(Move move, char simbolo) throws InvalidMoveException {
+        int i = move.getI();
+        int j = move.getJ();
+
+        //Verifica se a jogada é válida para a matriz
+        if (i < 0 || j < 0 || i >= matriz.length || j >= matriz[0].length) {
+            throw new InvalidMoveException("Jogada inválida!");
+        }
+
+        //Verificar se a jogada já foi realizada
+        if (matriz[i][j] != ' ') {
+            throw new InvalidMoveException("Jogada inválida!");
+        }
+
+        //Símbolo na posição específica
+        matriz[i][j] = simbolo;
+
+        //Retorna se houve uma sequencia
+        return isSequenceFound();
+    }
+/**
+ * Verifica se uma sequencia de 3 símbolos foi encontrada.
+ * @return true se foi encontrada, caso contrário false.
+ * */
+    public boolean isSequenceFound() {
+        if(matriz[0][0] == matriz[0][1] && matriz[0][1] == matriz[0][2] && matriz[0][0] != ' ') {
+            return true;
+        }
+
+        if(matriz[1][0] == matriz[1][1] && matriz[1][1] == matriz[1][2] && matriz[1][0] != ' ') {
+            return true;
+        }
+
+        if(matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2] && matriz[2][0] != ' ') {
+            return true;
+        }
+
+        if(matriz[0][0] == matriz[1][0] && matriz[1][0] == matriz[2][0] && matriz[0][0] != ' ') {
+            return true;
+        }
+
+        if(matriz[0][1] == matriz[1][1] && matriz[1][1] == matriz[2][1] && matriz[0][1] != ' ') {
+            return true;
+        }
+
+        if(matriz[0][2] == matriz[1][2] && matriz[1][2] == matriz[2][2] && matriz[0][2] != ' ') {
+            return true;
+        }
+
+        if(matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != ' ') {
+            return true;
+        }
+
+        if(matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != ' ') {
+            return true;
+        }
+
+        return false;
+    }
 }
