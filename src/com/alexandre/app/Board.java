@@ -48,4 +48,19 @@ public class Board {
        }
         System.out.println();
     }
+
+    /**
+     * Verifica se há espaços em branco no tabuleiro.
+     * Se estiver completo retorna true, caso contrário false.
+     * */
+    public boolean isComplete() {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][j] == ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
